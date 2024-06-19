@@ -1,0 +1,46 @@
+name: Build docker image and upload to Docker Hub
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Build docker image and upload to Docker Hub
+    runs-on: ubuntu-latest
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set sha_short
+        id: vars_sha_short
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build, tag, and push docker image to Amazon ECR
+        id: push
+        uses: docker/build-push-action@v5
+        with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: true
+          context: .
+          tags: birdhackor/centos7-py11:latest,birdhackor/centos7-py11:sha-${{ steps.vars_sha_short.outputs.sha_short }}
+
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: birdhackor/centos7-py11
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
