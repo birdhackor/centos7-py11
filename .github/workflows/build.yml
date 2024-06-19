@@ -36,11 +36,4 @@ jobs:
           cache-to: type=gha,mode=max
           push: true
           context: .
-          tags: birdhackor/centos7-py11:latest,birdhackor/centos7-py11:sha-${{ steps.vars_sha_short.outputs.sha_short }}
-
-      - name: Generate artifact attestation
-        uses: actions/attest-build-provenance@v1
-        with:
-          subject-name: birdhackor/centos7-py11
-          subject-digest: ${{ steps.push.outputs.digest }}
-          push-to-registry: true
+          tags: birdhackor/centos7-py311:latest,birdhackor/centos7-py311:sha-${{ steps.vars_sha_short.outputs.sha_short }}
