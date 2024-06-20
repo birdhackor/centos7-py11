@@ -36,4 +36,4 @@ RUN ln -s /usr/local/python3.11/bin/python3.11 /usr/local/python3.11/bin/python3
 
 RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/python3.11/lib/" >> ~/.bashrc
 
-WORKDIR /root
+WORKDIR /
