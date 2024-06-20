@@ -26,3 +26,7 @@ RUN ./configure --prefix=/usr/local/python3.11 --with-openssl=/usr/local/ssl --e
     make install && make clean
 
 RUN ln -s /usr/local/python3.11/bin/python3 /usr/bin/python3
+
+RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/python3.11/lib/
+
+WORKDIR /root
