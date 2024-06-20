@@ -28,7 +28,8 @@ RUN ./configure --prefix=/usr/local/python3.11 --with-openssl=/usr/local/ssl --e
 
 RUN ln -s /usr/local/python3.11/bin/python3.11 /usr/local/python3.11/bin/python3 && \
     ln -s /usr/local/python3.11/bin/pip3.11 /usr/local/python3.11/bin/pip3 && \
-    ln -s /usr/local/python3.11/bin/python3 /usr/bin/python3
+    ln -s /usr/local/python3.11/bin/python3 /usr/bin/python3 && \
+    ln -s /usr/local/python3.11/bin/pip3 /usr/bin/pip3
 
 RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/python3.11/lib/" >> ~/.bashrc
 
