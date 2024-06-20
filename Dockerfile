@@ -1,7 +1,10 @@
 FROM centos:7
 
 RUN yum -y groupinstall "Development Tools" && \
-    yum -y install xcb-util-renderutil libxcb libxcb-devel libXrender libXrender-devel xcb-util-wm xcb-util-wm-devel xcb-util xcb-util-devel xcb-util-image xcb-util-image-devel xcb-util-keysyms xcb-util-keysyms-devel
+    yum -y install xcb-util-renderutil libxcb libxcb-devel libXrender libXrender-devel \
+        xcb-util-wm xcb-util-wm-devel xcb-util xcb-util-devel xcb-util-image xcb-util-image-devel \
+        xcb-util-keysyms xcb-util-keysyms-devel libxkbcommon libxkbcommon-devel \
+        libxkbcommon-x11 libxkbcommon-x11-devel libXext libXext-devel
 
 ADD https://www.openssl.org/source/old/1.1.1/openssl-1.1.1w.tar.gz /tmp
 
