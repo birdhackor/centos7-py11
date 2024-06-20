@@ -22,7 +22,7 @@ RUN tar -xzvf /tmp/Python-3.11.9.tgz -C /tmp
 
 WORKDIR /tmp/Python-3.11.9
 
-RUN ./configure --prefix=/usr/local/python3.11 --with-openssl=/usr/local/ssl --enable-optimizations --with-zlib && \
+RUN ./configure --prefix=/usr/local/python3.11 --with-openssl=/usr/local/ssl --enable-optimizations --with-zlib --enable-shared && \
     make install && make clean
 
 RUN ln -s /usr/local/python3.11/bin/python3 /usr/bin/python3
