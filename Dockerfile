@@ -30,6 +30,6 @@ RUN ln -s /usr/local/python3.11/bin/python3.11 /usr/local/python3.11/bin/python3
     ln -s /usr/local/python3.11/bin/pip3.11 /usr/local/python3.11/bin/pip3 && \
     ln -s /usr/local/python3.11/bin/python3 /usr/bin/python3
 
-RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/python3.11/lib/
+RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/python3.11/lib/" >> ~/.bashrc
 
 WORKDIR /root
