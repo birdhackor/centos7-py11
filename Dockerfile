@@ -36,7 +36,8 @@ RUN ln -s /usr/local/python3.11/bin/python3.11 /usr/local/python3.11/bin/python3
 
 RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/python3.11/lib/" >> ~/.bashrc
 
-RUN pip3 install pipx && \
+RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/python3.11/lib/ && \
+    pip3 install pipx && \
     ln -s /usr/local/python3.11/bin/pipx /usr/bin/pipx && \
     pipx install pdm && \
     pipx ensurepath
